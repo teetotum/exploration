@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .introduction {
+        margin-top: 32px;
+        background-color: #eeeeee;
+        padding: 16px;
+        border-radius: 8px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .example {
+        margin-top: 64px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .text {
+        padding-right: 64px;
+        padding-left: 32px;
+      }
+
+      .text p {
+        margin-bottom: 32px;
+      }
+
+      .scroll-container {
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+        height: 340px;
+        resize: vertical;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="introduction">
+      <h2>shadow overlay indicates content scrolled out of view</h2>
+      <p>
+        For text content for which it is important that the user is aware of
+        potentially concealed parts of the text due to overflow we can show a
+        shadow overlaying the content towards the edge where the overflow
+        occurs.
+      </p>
+      <label>
+        <input type="checkbox" id="overlay-toggle" />
+        <span>use overlay shadow to indicate overflow</span>
+      </label>
+    </section>
+
+    <section class="example">
+      <h3>Example</h3>
+      <div class="scroll-container">
+        <div class="text">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+          <p>
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
+            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua.
+          </p>
+          <p>
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+          <p>
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
+            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </div>
+      </div>
+    </section>
+    <script>
+      const scrollContainer = document.querySelector(".scroll-container");
+      const overlayToggle = document.getElementById("overlay-toggle");
+      overlayToggle.addEventListener("change", (e) => {
+        scrollContainer.classList.toggle("with-shadow");
+      });
+      const updateOverflow = () => {
+        const { scrollTop, offsetHeight, scrollHeight } = scrollContainer;
+        const isAtTop = scrollTop === 0;
+        const isAtBottom = scrollTop + offsetHeight >= scrollHeight;
+
+        if (isAtTop) {
+          scrollContainer.classList.remove("overflow-top");
+        } else {
+          scrollContainer.classList.add("overflow-top");
+        }
+
+        if (isAtBottom) {
+          scrollContainer.classList.remove("overflow-bottom");
+        } else {
+          scrollContainer.classList.add("overflow-bottom");
+        }
+      };
+      scrollContainer.addEventListener("scroll", updateOverflow);
+      const resizeObserver = new ResizeObserver(updateOverflow);
+      resizeObserver.observe(scrollContainer);
+      updateOverflow();
+    </script>
+  </body>
+</html>

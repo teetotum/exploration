@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @keyframes adjust-progressbar {
+        from {
+          transform: scaleX(0);
+        }
+        to {
+          transform: scaleX(1);
+        }
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      section {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .example {
+        background-color: #eeeeee;
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .scroll-container {
+        overflow-y: auto;
+        height: 124px;
+        scroll-timeline-name: scroller;
+      }
+
+      #progressbar {
+        background-color: red;
+        animation: 1s linear both adjust-progressbar;
+        animation-timeline: scroller;
+      }
+
+      .with-shadow::before {
+        content: "";
+        pointer-events: none;
+        display: block;
+        position: sticky;
+        top: 0;
+        transform: translateY(-10px);
+        left: 0;
+        width: 100%;
+        height: 10px;
+        margin-bottom: -10px;
+        box-shadow: 0 0 40px #000000bb;
+      }
+
+      .with-shadow::after {
+        content: "";
+        pointer-events: none;
+        display: block;
+        position: sticky;
+        bottom: 0;
+        transform: translateY(10px);
+        left: 0;
+        width: 100%;
+        height: 10px;
+        margin-top: -10px;
+        box-shadow: 0 0 40px #000000bb;
+      }
+
+      @keyframes show-edge-shadow {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes hide-edge-shadow {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      .with-shadow::before {
+        animation: 1s linear both show-edge-shadow;
+        animation-timeline: scroller;
+      }
+
+      .with-shadow::after {
+        animation: 1s linear both hide-edge-shadow;
+        animation-timeline: scroller;
+      }
+    </style>
+    <script src="https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js"></script>
+  </head>
+  <body>
+    <section>
+      <h2>shadow overlay indicates content scrolled out of view</h2>
+      <p>
+        For text content for which it is important that the user is aware of
+        potentially concealed parts of the text due to overflow we can show a
+        shadow overlaying the content towards the edge where the overflow
+        occurs.
+      </p>
+      <label>
+        <input type="checkbox" id="overlay-toggle" />
+        <span>use overlay shadow to indicate overflow</span>
+      </label>
+      <h3>Example</h3>
+
+      <div class="example">
+        <div class="scroll-container" id="scroll-container">
+          <p>
+            The signee shall henceforth receive gold denariī, three bushels full
+            to the brim, each month on the first full moon.
+            <br />
+            Further shall he or she receive a fathom of wine, a wainload of
+            cheese, and a bucket of honey, each month on the first full moon.
+            <br />
+            The signee hereby consigns his or her immortal soul to Monsieur
+            de'Vil
+            <br />
+            The contract can only be voided by learning and memorizing all HTML
+            elements by their tag name and their function.
+          </p>
+        </div>
+        <br />
+        <label>
+          <input type="checkbox" />
+          <span>I read and accept the terms and conditions</span>
+        </label>
+
+        <div id="progressbar">progress</div>
+      </div>
+    </section>
+    <script>
+      const scrollContainer = document.querySelector(".scroll-container");
+      const overlayToggle = document.getElementById("overlay-toggle");
+      overlayToggle.addEventListener("change", (e) => {
+        scrollContainer.classList.toggle("with-shadow");
+      });
+    </script>
+  </body>
+</html>
