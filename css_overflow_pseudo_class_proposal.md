@@ -1,6 +1,6 @@
 # Proposal for new CSS pseudo class :overflow (-top, -right, -bottom, -left)
 
-There are valid use-cases for which the UI must react to an occurring oveflow (beyond just showing a scrollbar).
+There are valid use-cases for which the UI must react to an occurring overflow (beyond just showing a scrollbar).
 Currently those cases always require a javascript solution.
 The required code to deal with such use-cases could be simplified if the fact that an overflow occurred was accessible in the CSS.
 A new CSS pseudo class `:overflow-<side>` would satisfy this need.
@@ -10,17 +10,21 @@ A new CSS pseudo class `:overflow-<side>` would satisfy this need.
 The following CSS pseudo class selectors are added to the standard:
 
 - `:overflow-top`
+
   A selector that matches any HTML element wich has content overflowing its top boundary.
   For this the element must be a scroll container i.e. the content must exceed the available size
   and the computed style for `overflow` in this direction must be `visible`, `hidden`, `scroll`, or `auto`; it must not be `clip`.
 
 - `:overflow-right`
+
   analogous to `:overflow-top` but concerned with the right boundary
 
 - `:overflow-bottom`
+
   analogous to `:overflow-top` but concerned with the bottom boundary
 
 - `:overflow-left`
+
   analogous to `:overflow-top` but concerned with the left boundary
 
 Further shorthand selectors could be added:
@@ -37,9 +41,9 @@ Further shorthand selectors could be added:
 
 For text content for which it is important that the user is aware of potentially concealed parts of the text due to overflow we can show a shadow overlaying the content towards the edge where the overflow occurs.
 
-![example without scroll shadow](https://github.com/teetotum/exploration/blob/master/scroll_shadow/example_without_scroll_shadow.png)
+![example without scroll shadow](https://raw.githubusercontent.com/teetotum/exploration/master/scroll_shadow/example_without_scroll_shadow.png)
 
-![example with scroll shadow](https://github.com/teetotum/exploration/blob/master/scroll_shadow/example_with_scroll_shadow.png)
+![example with scroll shadow](https://raw.githubusercontent.com/teetotum/exploration/master/scroll_shadow/example_with_scroll_shadow.png)
 
 - [Link](https://gleaming-peppered-lifeboat.glitch.me/) to live example implementation using javascript
 - [Link](https://glitch.com/edit/#!/gleaming-peppered-lifeboat) to code
@@ -70,7 +74,7 @@ A pure CSS solution using the proposed pseudo class would work with the followin
 
 When the design omits the default scrollbar but offers custom buttons to scroll the content we want to _a)_ display the buttons only when there is actually an overflow and _b)_ enable a button to receive clicks only when there is scrollable area in the respective direction.
 
-![custom scroll buttons example](https://github.com/teetotum/exploration/blob/master/custom_scroll_buttons/custom_scroll_buttons_example.png)
+![custom scroll buttons example](https://raw.githubusercontent.com/teetotum/exploration/master/custom_scroll_buttons/custom_scroll_buttons_example.png)
 
 - [Link](https://humorous-glass-file.glitch.me/) to live example implementation using javascript
 - [Link](https://glitch.com/edit/#!/humorous-glass-file) to code
