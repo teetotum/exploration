@@ -41,9 +41,7 @@ Further shorthand selectors could be added:
 
 For text content for which it is important that the user is aware of potentially concealed parts of the text due to overflow we can show a shadow overlaying the content towards the edge where the overflow occurs.
 
-![example without scroll shadow](https://raw.githubusercontent.com/teetotum/exploration/master/scroll_shadow/example_without_scroll_shadow.png)
-
-![example with scroll shadow](https://raw.githubusercontent.com/teetotum/exploration/master/scroll_shadow/example_with_scroll_shadow.png)
+![example with scroll shadow](https://raw.githubusercontent.com/teetotum/exploration/master/scroll_shadow/screenshot_marked.png)
 
 - [Link](https://gleaming-peppered-lifeboat.glitch.me/) to live example implementation using javascript
 - [Link](https://glitch.com/edit/#!/gleaming-peppered-lifeboat) to code
@@ -100,7 +98,7 @@ A pure CSS solution using the proposed pseudo class would work with the followin
 ## Roadblocks
 
 The proposed feature does not fit well into how browsers currently render a document.
-Selectors are matched, resulting in styles being applied, resulting in layout, causing overflow, which would now need to trigger matching of `:overflow` selectors and applying corresponding styles, which could cause more overflow or undo an oveflow; potentially causing an infinite cycle.
+Selectors are matched, resulting in styles being applied, resulting in layout, causing overflow, which would now need to trigger matching of `:overflow` selectors and applying corresponding styles, which could cause more overflow or undo an overflow; potentially causing an infinite cycle.
 The same concern has been discussed [here](https://discourse.wicg.io/t/add-truncated-to-css-pseudo-selector-specification/621) without a feasible solution.
 
 ## Alternatives
