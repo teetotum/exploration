@@ -11,7 +11,7 @@ The following CSS pseudo class selectors are added to the standard:
 
 - `:overflow-top`
 
-  A selector that matches any HTML element wich has content overflowing its top boundary.
+  A selector that matches any HTML element which has content overflowing its top boundary.
   For this the element must be a scroll container i.e. the content must exceed the available size
   and the computed style for `overflow` in this direction must be `visible`, `hidden`, `scroll`, or `auto`; it must not be `clip`.
 
